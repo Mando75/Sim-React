@@ -1,3 +1,17 @@
+## Getting Going
+
+Have Yarn and Node
+
+`yarn install`
+
+`yarn start`
+
+...and you're done!
+
+DEAR LEADER will be managing master branch. That automatic deploys to [here](https://byui-econ-sim.herokuapp.com)
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
