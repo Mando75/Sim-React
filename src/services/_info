@@ -1,0 +1,7 @@
+Any API calls. 
+
+If we need to manage cookies, user sessions, etc, we should 
+make a base class that all other services inherit from
+with custom getters and setters
+
+use axios library
