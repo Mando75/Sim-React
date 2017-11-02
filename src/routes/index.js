@@ -1,24 +1,31 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import { connect } from 'redux-zero/react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import './routes.css'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { initAuth } from '../helpers/init'
+import AuthPortal from '../components/AuthPortal'
 
-export default function Routes(props) {
+const MTP = ({authed}) => ({authed});
+function Routes(props) {
+  initAuth();
   return (
-    <Router history={createHistory()}>
+    <BrowserRouter>
       <div className="site-container">
-        <Route path="/:site?" component={Header} />
-        <div className="routes-container">
+        {props.authed ? (
           <Switch>
-            <Route path="/" exact render={() => (<div>ROOT ROUTE CONTENT YOOO</div>)} />
+            <Route path="/" exact render={() => (<div className="">ROOT ROUTE CONTENT YOOO I AM HERE AND HERE TO STAY. I CAME TO YOUR HOMETOWN BUT ONLY TO SLAY.</div>)} />
             <Redirect to="/" />
           </Switch>
-        </div>
-        <Route path='/:site?' component={Footer} />
+        ) : (
+          <Switch>
+            <Route path="/" component={AuthPortal} />
+            <Redirect to="/" />
+          </Switch>
+        )}
       </div>
-    </Router>
+    </BrowserRouter>
   )
 }
+
+export default connect(MTP)(Routes)

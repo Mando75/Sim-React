@@ -1,8 +1,18 @@
 // Available Fonts
+@mixin source-sans {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+@mixin source-sans-semi-bold {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}
 
 // Colors
-$black:    #000000;
-$white:    #FFFFFF;
+$black:      #000000;
+$grey:       #464751;
+$light-grey: #5E6270;
+$white-blue: #F4FAFF;
+$white:      #FFFFFF;
 
 // Mixins
 @mixin for-phone-only {
@@ -47,6 +57,42 @@ $white:    #FFFFFF;
 
 // Animations
 @mixin content-load {
-  animation: content 1.2s;
+  animation: load 1.2s;
   animation-fill-mode: forwards;
+}
+
+@mixin content-unload {
+  animation: unload 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@mixin fade-in {
+  animation: in 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@mixin fade-out {
+  animation: out 1.2s;
+  animation-fill-mode: forwards;
+}
+
+// Keyframes
+@keyframes load {
+  0% { opacity: 0; visibility: visible; transform: translateY(15px); }
+  100% { opacity: 1; visibility: visible; transform: translateY(0px); }
+}
+
+@keyframes unload {
+  0% { opacity: 1; visibility: visible; transform: translateY(0px); }
+  100% { opacity: 0; visibility: visible; transform: translateY(15px); }
+}
+
+@keyframes in {
+  0% { opacity: 0; visibility: visible; }
+  100% { opacity: 1; visibility: visible; }
+}
+
+@keyframes out {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: visible; }
 }

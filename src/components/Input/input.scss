@@ -1,0 +1,22 @@
+@import '_shared.scss';
+
+.input-component {
+  width: 100%;
+  outline: none;
+  padding: 0 0 2px 0;
+  border: none;
+  background: none;
+  border-bottom: 1px solid $light-grey;
+  @include source-sans;
+  font-size: 18px;
+  color: $white-blue;
+  @include uniform-transition(border);
+
+  &::placeholder {
+    color: $light-grey;
+  }
+
+  &:focus {
+    border-bottom: 1px solid $white-blue;
+  }
+}
