@@ -12,11 +12,14 @@
   color: $white-blue;
   @include uniform-transition(border);
 
-  &::placeholder {
+  &::placeholder { 
     color: $light-grey;
+    @include uniform-transition(color);
   }
 
-  &:focus {
-    border-bottom: 1px solid $white-blue;
+  &:focus { border-bottom: 1px solid $white-blue; }
+
+  &:hover {
+    &::placeholder { color: $grey-white; } 
   }
 }

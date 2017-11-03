@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import './routes.css'
 
 import { initAuth } from '../helpers/init'
-import AuthPortal from '../components/AuthPortal'
+import AuthPortal from './AuthPortal'
 
 const MTP = ({authed}) => ({authed});
 function Routes(props) {

@@ -50,10 +50,16 @@
 
         .active {
           color: $white-blue;
+          cursor: default;
         }
 
         .inactive {
           color: $light-grey;
+          cursor: pointer;
+          @include uniform-transition(color);
+          &:hover {
+            color: $grey-white;
+          }
         }
 
         .highlight {
@@ -82,7 +88,7 @@
         cursor: pointer;
         @include uniform-transition(color);
         &:hover {
-          color: $light-grey;
+          color: $grey-white;
         }
       }
     }
