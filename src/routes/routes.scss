@@ -2,7 +2,6 @@
 
 body {
   margin: 0;
-  // background-color: $white-blue;
   background-color: $grey;
   color: $black;
 }
@@ -22,16 +21,10 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  // max-width: 1440px;
   display: flex;
   flex-direction: column;
-  // padding: 0 15px;
-  // @include for-tablet-portrait-up { padding: 0 75px; }
-  // @include for-desktop-up { padding: 0 100px; }
-  // @include uniform-transition(padding);
 
-  .routes-container {
-    flex-grow: 1;
-    flex-shrink: 0;
+  .temptemp {
+    @include content-load;
   }
 }

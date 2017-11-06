@@ -1,9 +1,9 @@
 import store from '../store'
 
 export const auth = () => {
-  store.setState({ authed: true });
+  store.setState({ _authed: true });
 }
 
 export const deauth = () => {
-  store.setState({ authed: false });
+  store.setState({ _authed: false });
 }

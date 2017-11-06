@@ -1,10 +1,11 @@
 import BaseService from './BaseService'
 import axios from 'axios'
 import qs from 'querystring'
+import { setUser } from '../redux-zero/actions/user'
 
 export default class AuthService extends BaseService {
 
-  static log_in(username, password) {
+  static log_in(username, password, type) {
     return axios({
       method: 'post',
       url: `${process.env.REACT_APP_SERVER}/auth`,
@@ -14,17 +15,22 @@ export default class AuthService extends BaseService {
       data: qs.stringify({
         unit_id: username,
         password: password,
-        type: "student/teacher"
+        type: type
       })
     }).then(({data}) => {
-      // TODO: Pull more from data when Yan-yAN gives me what I want
+      setUser(data.user);
       this.auth = data.token;
       return true;
     }).catch(() => false);
   }
 
   static check_auth() {
-    // TODO: Hit that check_auth endpoint 
+    return axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_SERVER}/checkauth`,
+      headers: { ...this.auth }
+    }).then(({data}) => data.user)
+      .catch(() => false);
   }
 
 }

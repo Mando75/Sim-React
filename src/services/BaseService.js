@@ -6,8 +6,9 @@ export default class BaseService {
 
   static set auth(jwt) {
     localStorage.setItem('jwt', jwt);
-    // Should I call auth() here action?
   }
   
-  // Should I add a action call to deauth?
+  static deauthed() {
+    localStorage.removeItem("jwt");
+  }
 }

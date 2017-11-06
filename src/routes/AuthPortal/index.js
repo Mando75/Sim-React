@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'redux-zero/react'
-import Icon from 'react-fontawesome'
 import './auth-portal.css'
 
-// import { auth } from '../../redux-zero/actions/auth'
-import BaseService from '../../services/BaseService'
-// import AuthService from '../../services/AuthService'
+import { auth } from '../../redux-zero/actions/auth'
+import AuthService from '../../services/AuthService'
 import Input from '../../components/Input'
-// import Loading from '../Loading'
+import Loading from '../../components/Loading'
 
-const MTP = ({authed}) => ({authed});
+const MTP = ({_loading, _id}) => ({_loading, _id});
 class AuthPortal extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +16,9 @@ class AuthPortal extends Component {
       username: '',
       password: '',
       type: 'student',
-      loading: false,
-      authed: false
+      loginFailed: false,
+      loginLoading: false,
+      doneLoading: false
     }
   }
 
@@ -30,24 +29,25 @@ class AuthPortal extends Component {
   _login = (e) => {
     e.preventDefault() 
     e.stopPropagation();
-    console.log(this.state.authed);
-    this.setState({ loading: true }, async () => {
-      // let success = await AuthService.log_in(this.state.username, this.state.password);
-      // await auth();
-      // console.log(`auth state: ${this.props.authed}`);
-      // console.log(success);
+    this.setState({ loginLoading: true }, async () => {
+      let success = await AuthService.log_in(this.state.username, this.state.password, this.state.type);
+      if (!success) {
+        setTimeout(() => {this.setState({
+          loginFailed: true,
+          loginLoading: false
+        })}, 3000);
+      } else {
+        setTimeout(() => {auth()}, 2500);
+      }
     })
   }
 
-  componentWillMount() {
-    // set loading and stuff in here?
-    console.log(BaseService.auth);
-  }
-  
   render() {
-    const { type } = this.state; 
+    const { type, loginFailed, loginLoading, doneLoading } = this.state;
+    const { _loading, _id } = this.props;
+    if (!!_id && !doneLoading) setTimeout(() => {this.setState({doneLoading: true})}, 1000);
     return (
-      <div className='auth-portal-component'>
+      <div className={`auth-portal-component${!!doneLoading ? ' fade-out' : ''}`}>
         <div className="login-box">
           <form onSubmit={this._login}>
             <div className="title">BYU-I ECON SIM</div>
@@ -70,13 +70,12 @@ class AuthPortal extends Component {
               <button className="submit" type="submit">login</button>
             </div>
           </form>
-          {/* <Loading loading={loading} width={180} className="loading-margin"/> */}
-        </div>
-        <div className="footer">
-          <div>
-            <Icon name="cog" className="button" />
-            <Icon name="question-circle" className="button" />
-          </div>
+          {(_loading || loginLoading) && <div className="loading-wrapper">
+            <Loading width={180}/>
+          </div>}
+          {loginFailed && <div className="login-failed-wrapper">
+            Login failed. Please check your credentials.
+          </div>}
         </div>
       </div>
     );
@@ -84,6 +83,3 @@ class AuthPortal extends Component {
 }
 
 export default connect(MTP)(AuthPortal)
-
-// 4E6A6
-// 388019411

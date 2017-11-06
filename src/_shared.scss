@@ -56,24 +56,45 @@ $white:      #FFFFFF;
   }
 }
 
+// Animations Classes
+.fade-up {
+  animation: load 1s;
+  animation-fill-mode: forwards;
+}
+
+.fade-down {
+  animation: unload 1s;
+  animation-fill-mode: forwards;
+}
+
+.fade-in {
+  animation: in 1s;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  animation: out 1s;
+  animation-fill-mode: forwards;
+}
+
 // Animations
 @mixin content-load {
-  animation: load 1.2s;
+  animation: load 1s;
   animation-fill-mode: forwards;
 }
 
 @mixin content-unload {
-  animation: unload 1.2s;
+  animation: unload 1s;
   animation-fill-mode: forwards;
 }
 
 @mixin fade-in {
-  animation: in 1.2s;
+  animation: in 1s;
   animation-fill-mode: forwards;
 }
 
 @mixin fade-out {
-  animation: out 1.2s;
+  animation: out 1s;
   animation-fill-mode: forwards;
 }
 

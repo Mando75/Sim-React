@@ -13,6 +13,7 @@
   .login-box {
     display: flex;
     flex-direction: column;
+    position: relative;
     color: $white-blue;
     width: 278px;
     @include content-load;
@@ -93,8 +94,22 @@
       }
     }
     
-    .loading-margin {
-      margin-top: 30px;
+    .loading-wrapper {
+      position: absolute;
+      bottom: -35px;
+      width: 100%;
+      @include fade-in;
+    }
+
+    .login-failed-wrapper {
+      position: absolute;
+      bottom: -65px;
+      width: 100%;
+      @include fade-in;
+      color: $white-blue;
+      @include source-sans;
+      font-size: 14px;
+      text-align: center;
     }
   }
 
