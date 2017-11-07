@@ -50,7 +50,7 @@ class AuthPortal extends Component {
       <div className={`auth-portal-component${!!doneLoading ? ' fade-out' : ''}`}>
         <div className="login-box">
           <form onSubmit={this._login}>
-            <div className="title">BYU-I ECON SIM</div>
+            <div className="title">LOGIN PORTAL</div>
             <Input name="username" placeholder="username" type="text" onChange={this._handleInput} className="input"/>
             <Input name="password" placeholder="password" type="password" onChange={this._handleInput} className="input password"/>
             <div className="button-wrapper">
